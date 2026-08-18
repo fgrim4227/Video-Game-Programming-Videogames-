@@ -40,11 +40,11 @@ class PlayState(BaseState):
             self._score(scorer=2)
             return
 
-        if ball_rect.top <= 0:
+        if ball_rect.top <= 0 and pong.ball.vy < 0:
             settings.SOUNDS["wall_hit"].play()
             pong.ball.y = 0
             pong.ball.vy *= -1
-        elif ball_rect.bottom >= settings.VIRTUAL_HEIGHT:
+        elif ball_rect.bottom >= settings.VIRTUAL_HEIGHT and pong.ball.vy > 0:
             settings.SOUNDS["wall_hit"].play()
             pong.ball.y = settings.VIRTUAL_HEIGHT - pong.ball.height
             pong.ball.vy *= -1
@@ -58,13 +58,13 @@ class PlayState(BaseState):
             settings.SOUNDS["paddle_hit"].play()
             pong.ball.x = player1_rect.right
             pong.ball.vx *= -1.03
-            self.pong.player2.already_calculated = False
+            self.pong.player2.reset_prediction()
             self._randomize_vy()
         elif ball_rect.colliderect(player2_rect):
             settings.SOUNDS["paddle_hit"].play()
             pong.ball.x = player2_rect.left - pong.ball.width
             pong.ball.vx *= -1.03
-            self.pong.player2.already_calculated = True
+            self.pong.player1.reset_prediction()
             self._randomize_vy()
 
     def _randomize_vy(self) -> None:
@@ -74,7 +74,8 @@ class PlayState(BaseState):
     def _score(self, scorer: int) -> None:
         pong = self.pong
         settings.SOUNDS["score"].play()
-        pong.player2.already_calculated = False
+        self.pong.player1.reset_prediction()
+        self.pong.player2.reset_prediction()
         # Neither ServeState, DoneState, nor TitleState handle p1_up/p1_down/
         # p2_up/p2_down, so if a paddle key is still held when a point is
         # scored, its eventual release event is dropped instead of zeroing

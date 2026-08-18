@@ -10,30 +10,38 @@ class Bot(Paddle):
         self.ref_ball : Ball = ball
 
     def calculate_target(self, dt: float) -> None:
-        if(self.ref_ball.vx > 0):
-            curr_x = self.ref_ball.x
-            curr_y = self.ref_ball.y
-            curr_vx = self.ref_ball.vx
-            curr_vy = self.ref_ball.vy
-            b_height = self.ref_ball.height
-            r_lim = settings.VIRTUAL_WIDTH - self.width - settings.PADDLE_X_OFFSET - self.ref_ball.width
-            lower_lim = settings.VIRTUAL_HEIGHT
-            if not self.already_calculated:
-                while curr_x <= r_lim:
+        curr_x = self.ref_ball.x
+        curr_y = self.ref_ball.y
+        curr_vx = self.ref_ball.vx
+        curr_vy = self.ref_ball.vy
+        b_height = self.ref_ball.height
+        calc_lim = (settings.VIRTUAL_WIDTH - self.width - settings.PADDLE_X_OFFSET - self.ref_ball.width) if curr_vx > 0 else settings.PADDLE_WIDTH + settings.PADDLE_X_OFFSET
+        lower_lim = settings.VIRTUAL_HEIGHT
+        if not self.already_calculated:
+            if(curr_vx > 0):
+                while curr_x <= calc_lim:
                     if(curr_y <= 0):
                         curr_y = 0
                         curr_vy *= -1
                     elif(curr_y >= lower_lim):
                         curr_y = lower_lim - b_height
                         curr_vy *= -1
-                    print(curr_x)
                     curr_x += curr_vx * dt
                     curr_y += curr_vy * dt
                 self.target_y = curr_y
                 self.already_calculated = True
-        else:
-            self.target_y = settings.VIRTUAL_HEIGHT / 2
-            self.already_calculated = True
+            elif(curr_vx < 0):
+                while (curr_x >= calc_lim):
+                    if(curr_y <= 0):
+                        curr_y = 0
+                        curr_vy *= -1
+                    elif(curr_y >= lower_lim - b_height):
+                        curr_y = lower_lim - b_height
+                        curr_vy *= -1
+                    curr_x += curr_vx * dt
+                    curr_y += curr_vy * dt
+                self.target_y = curr_y
+                self.already_calculated = True
 
     def move_towards_goal(self, step : float)->None:
         if(round(self.y + self.height / 2) > self.target_y and (self.y + self.height / 2) - self.target_y > 2):
@@ -42,7 +50,7 @@ class Bot(Paddle):
             self.y += settings.PADDLE_SPEED * step
         if(self.y < 0):
             self.y = 0
-        if(self.y >= settings.VIRTUAL_HEIGHT):
+        if(self.y >= settings.VIRTUAL_HEIGHT - self.height):
             self.y = settings.VIRTUAL_HEIGHT - (self.height)
 
     def update(self, dt: float) -> None:
@@ -51,6 +59,9 @@ class Bot(Paddle):
             else:
                 self.calculate_target(dt)
                 self.already_calculated = True
+
+    def reset_prediction(self):
+        self.already_calculated = not self.already_calculated
         
 
                     
