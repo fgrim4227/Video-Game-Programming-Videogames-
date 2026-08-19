@@ -3,7 +3,6 @@ from src.Ball import Ball
 import settings
 class Bot(Paddle):
     def __init__(self, x : float, y : float, width : float, height : float, ball : Ball) -> None:
-        #Parent's constructor method
         super().__init__(x, y, width, height)
         self.already_calculated : bool = False
         self.target_y : float = self.y

@@ -58,8 +58,7 @@ class Pong(Game):
         self.state_machine.update(dt)
 
     def render(self, surface: pygame.Surface) -> None:
-        #surface.fill(settings.COLOR_BACKGROUND)
-        surface.fill((18, 11, 50))
+        surface.fill(settings.COLOR_BACKGROUND)
         self.state_machine.render(surface)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:

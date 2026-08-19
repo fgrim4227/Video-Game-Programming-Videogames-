@@ -84,5 +84,4 @@ class TitleState(BaseState):
                     settings.PADDLE_WIDTH,
                     settings.PADDLE_HEIGHT, self.pong.ball
                 )
-            #print(input_id)
             self.state_machine.change("serve", pong=self.pong)

@@ -58,6 +58,6 @@ FONTS = {
     "large": pygame.font.Font(BASE_DIR / "assets" / "fonts" / "font.ttf", 16),
 }
 
-COLOR_BACKGROUND = (0, 0, 0)
+COLOR_BACKGROUND = (18, 11, 50)
 COLOR_WHITE = (255, 255, 255)
 COLOR_YELLOW = (255, 255, 0)
