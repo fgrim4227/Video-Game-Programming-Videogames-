@@ -46,3 +46,8 @@ class ServeState(BaseState):
 
             pong.ball.vy = random.randint(-50, 49)
             self.state_machine.change("play", pong=pong)
+        elif(input_id == "menu" and input_data.pressed):
+            pong = self.pong
+            pong.player1_score = 0
+            pong.player2_score = 0
+            self.state_machine.change("title", pong=pong)

@@ -31,17 +31,17 @@ class TitleState(BaseState):
         render_table(surface, self.pong)
         render_text(
             surface,
-            "Press enter to start",
-            settings.FONTS["large"],
+            "Press enter to select",
+            settings.FONTS["score"],
             settings.VIRTUAL_WIDTH / 2,
-            settings.VIRTUAL_HEIGHT / 2,
+            settings.VIRTUAL_HEIGHT / 2 - 32,
             settings.COLOR_WHITE,
             center=True,
         )
 
-        color_t1 = (0,255,0) if (self.selected_opt == 0) else settings.COLOR_WHITE
-        color_t2 = (0,255,0) if (self.selected_opt == 1) else settings.COLOR_WHITE
-        color_t3 = (0,255,0) if (self.selected_opt == 2) else settings.COLOR_WHITE
+        color_t1 = (255,255,0) if (self.selected_opt == 0) else settings.COLOR_WHITE
+        color_t2 = (255,255,0) if (self.selected_opt == 1) else settings.COLOR_WHITE
+        color_t3 = (255,255,0) if (self.selected_opt == 2) else settings.COLOR_WHITE
 
         render_text(surface, "2 Jugadores", settings.FONTS["large"], settings.VIRTUAL_WIDTH / 2, settings.VIRTUAL_HEIGHT / 2 + 30, color_t1, center=True)
         render_text(surface, "1 Jugador vs Bot", settings.FONTS["large"], settings.VIRTUAL_WIDTH / 2, settings.VIRTUAL_HEIGHT / 2 + 50, color_t2, center=True)

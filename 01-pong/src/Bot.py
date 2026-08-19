@@ -61,7 +61,7 @@ class Bot(Paddle):
                 self.already_calculated = True
 
     def reset_prediction(self):
-        self.already_calculated = not self.already_calculated
+        self.already_calculated = False
         
 
                     

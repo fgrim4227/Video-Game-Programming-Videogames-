@@ -22,7 +22,7 @@ input_handler.InputHandler.set_keyboard_action(input_handler.KEY_w, "p1_up")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_s, "p1_down")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_UP, "p2_up")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_DOWN, "p2_down")
-
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_m, "menu")
 TITLE = "Pong"
 
 # Size of our actual window
@@ -60,3 +60,4 @@ FONTS = {
 
 COLOR_BACKGROUND = (0, 0, 0)
 COLOR_WHITE = (255, 255, 255)
+COLOR_YELLOW = (255, 255, 0)

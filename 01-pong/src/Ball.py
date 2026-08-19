@@ -36,4 +36,4 @@ class Ball:
         self.vy = 0.0
 
     def render(self, surface: pygame.Surface) -> None:
-        pygame.draw.rect(surface, settings.COLOR_WHITE, self.get_rect())
+        pygame.draw.rect(surface, settings.COLOR_YELLOW, self.get_rect())

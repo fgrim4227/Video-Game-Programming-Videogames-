@@ -28,26 +28,17 @@ class Pong(Game):
             settings.PADDLE_WIDTH,
             settings.PADDLE_HEIGHT,
         )
-        '''
-        #Jugador 2 prev
         self.player2 = Paddle(
             settings.VIRTUAL_WIDTH - settings.PADDLE_WIDTH - settings.PADDLE_X_OFFSET,
             settings.VIRTUAL_HEIGHT - settings.PADDLE_HEIGHT - settings.PADDLE_Y_OFFSET,
             settings.PADDLE_WIDTH,
             settings.PADDLE_HEIGHT,
         )
-        '''
         self.ball = Ball(
             settings.VIRTUAL_WIDTH / 2 - settings.BALL_SIZE / 2,
             settings.VIRTUAL_HEIGHT / 2 - settings.BALL_SIZE / 2,
             settings.BALL_SIZE,
         )
-        self.player2 = Bot(
-                    settings.VIRTUAL_WIDTH - settings.PADDLE_WIDTH - settings.PADDLE_X_OFFSET,
-                    settings.VIRTUAL_HEIGHT - settings.PADDLE_HEIGHT - settings.PADDLE_Y_OFFSET,
-                    settings.PADDLE_WIDTH,
-                    settings.PADDLE_HEIGHT, self.ball
-                )
         self.player1_score = 0
         self.player2_score = 0
         self.serving_player = 1
@@ -67,7 +58,8 @@ class Pong(Game):
         self.state_machine.update(dt)
 
     def render(self, surface: pygame.Surface) -> None:
-        surface.fill(settings.COLOR_BACKGROUND)
+        #surface.fill(settings.COLOR_BACKGROUND)
+        surface.fill((18, 11, 50))
         self.state_machine.render(surface)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
