@@ -27,8 +27,8 @@ class PlayState(BaseState):
         pong = self.pong
         prev_b_x = pong.ball.x
         prev_b_y = pong.ball.y
-        pong.player1.update(dt)
         pong.ball.update(dt)
+        pong.player1.update(dt)
         pong.player2.update(dt)
 
         if(pong.ball.x > settings.VIRTUAL_WIDTH):
@@ -132,6 +132,5 @@ class PlayState(BaseState):
                     pong.player2.vy = 0
         elif(input_id == "menu" and input_data.pressed):
             pong = self.pong
-            pong.player1_score = 0
-            pong.player2_score = 0
+            pong.reset()
             self.state_machine.change("title", pong=pong)

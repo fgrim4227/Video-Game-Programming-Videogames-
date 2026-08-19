@@ -48,6 +48,5 @@ class ServeState(BaseState):
             self.state_machine.change("play", pong=pong)
         elif(input_id == "menu" and input_data.pressed):
             pong = self.pong
-            pong.player1_score = 0
-            pong.player2_score = 0
+            pong.reset()
             self.state_machine.change("title", pong=pong)

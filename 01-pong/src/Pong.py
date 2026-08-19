@@ -67,3 +67,8 @@ class Pong(Game):
             self.quit()
         else:
             self.state_machine.on_input(input_id, input_data)
+    def reset(self)->None:
+        self.ball.reset(settings.VIRTUAL_WIDTH / 2 - settings.BALL_SIZE / 2, 
+                settings.VIRTUAL_HEIGHT / 2 - settings.BALL_SIZE / 2)
+        self.player1_score = 0
+        self.player2_score = 0

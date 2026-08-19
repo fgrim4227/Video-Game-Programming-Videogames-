@@ -54,3 +54,8 @@ class DoneState(BaseState):
             )
             pong.serving_player = 2 if pong.winning_player == 1 else 1
             self.state_machine.change("serve", pong=pong)
+        elif(input_id == "menu" and input_data.pressed):
+                    pong = self.pong
+                    pong.reset()
+                    self.state_machine.change("title", pong=pong)
+        

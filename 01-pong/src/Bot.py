@@ -17,6 +17,7 @@ class Bot(Paddle):
         b_height = self.ref_ball.height
         calc_lim = (settings.VIRTUAL_WIDTH - self.width - settings.PADDLE_X_OFFSET - self.ref_ball.width) if curr_vx > 0 else settings.PADDLE_WIDTH + settings.PADDLE_X_OFFSET
         lower_lim = settings.VIRTUAL_HEIGHT
+        sim_step = 0.02
         if not self.already_calculated:
             if(curr_vx > 0):
                 while curr_x <= calc_lim:
@@ -26,8 +27,8 @@ class Bot(Paddle):
                     elif(curr_y >= lower_lim):
                         curr_y = lower_lim - b_height
                         curr_vy *= -1
-                    curr_x += curr_vx * dt
-                    curr_y += curr_vy * dt
+                    curr_x += curr_vx * sim_step
+                    curr_y += curr_vy * sim_step
                 self.target_y = curr_y
                 self.already_calculated = True
             elif(curr_vx < 0):
@@ -38,8 +39,8 @@ class Bot(Paddle):
                     elif(curr_y >= lower_lim - b_height):
                         curr_y = lower_lim - b_height
                         curr_vy *= -1
-                    curr_x += curr_vx * dt
-                    curr_y += curr_vy * dt
+                    curr_x += curr_vx * sim_step
+                    curr_y += curr_vy * sim_step
                 self.target_y = curr_y
                 self.already_calculated = True
 
