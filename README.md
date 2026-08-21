@@ -56,7 +56,7 @@ sudo apt install python3 python3-venv python3-dev
 Descarga el código fuente en tu máquina local:
 
 ```bash
-git clone [https://github.com/fgrim4227/Pong_fg.git](https://github.com/fgrim4227/Pong_fg.git)
+git clone https://github.com/fgrim4227/Pong_fg.git
 cd Pong_fg
 
 ```
